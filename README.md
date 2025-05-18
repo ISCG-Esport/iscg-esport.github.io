@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
@@ -146,7 +145,6 @@
         <li>玩家C</li>
       </ul>
     </div>
-  </div>
 
   <script>
     function verifyPassword() {
@@ -161,5 +159,3 @@
       }
     }
   </script>
-</body>
-</html>
