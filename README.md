@@ -89,7 +89,7 @@
   <header>ISCG-Esport</header>
   <div class="container" id="login-container">
     <div class="login-box">
-      <img src="https://img.icons8.com/?size=48&id=30998&format=png" class="logo" alt="戰隊標誌">
+      <img src="IMG_20250413_172657_723.webp" class="logo" alt="戰隊標誌">
       <h2>ISCG ᴱSport</h2>
       <p>請輸入戰隊專屬密碼以檢視群組資訊：</p>
       <input type="password" id="password" placeholder="請輸入密碼" />
