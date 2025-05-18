@@ -151,7 +151,7 @@
   <script>
     function verifyPassword() {
       const input = document.getElementById("password").value;
-      const correctPassword = "iscg123"; // 你可以自行修改
+      const correctPassword = "0809"; // 你可以自行修改
 
       if (input === correctPassword) {
         document.getElementById("login-container").style.display = "none";
