@@ -131,15 +131,15 @@
       <a href="https://discord.gg/fanQdSv4PK" target="_blank">Discord 戰隊群</a>
     </div>
     <div class="link-box">
-      <img src="https://img.icons8.com/?size=48&id=118497&format=png" alt="TikTok">
+      <img src="https://images.app.goo.gl/eNzNS" alt="TikTok">
       <a href="https://vt.tiktok.com/ZSHXGFkaU48Jg-cZ9XU/" target="_blank">TikTok 戰隊群</a>
     </div>
     <div class="link-box">
       <img src="https://img.icons8.com/?size=48&id=32292&format=png" alt="Instagram">
       <a href="https://ig.me/j/AbbADUNsweizIrmP/" target="_blank">Instagram 戰隊群</a>
     </div>
-    <div class="sponsor-list">
-      <h2>贊助名單（50寶石）</h2>
+  <div class="sponsor-list">
+      <h2>贊助名單（50鑽凝膠）</h2>
       <ul>
         <li>玩家A</li>
         <li>玩家B</li>
