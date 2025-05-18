@@ -1,127 +1,98 @@
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ISCG ᴱSport 戰隊入口</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISCG E-Sport 登入</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #000;
-      color: #fff;
-    }
-    header {
-      text-align: center;
-      font-size: 2rem;
-      padding: 20px;
-      color: #2aa0ff;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
     }
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: radial-gradient(circle, #1b1b1b 30%, #000000 100%);
-      box-shadow: 0 0 30px #f40076;
-    }
-    .login-box {
-      background-color: rgba(0, 0, 0, 0.8);
+      background: radial-gradient(circle at center, #1b1b1b, #0f0f0f);
+      border: 2px solid #ff0055;
+      border-radius: 20px;
       padding: 40px;
-      border-radius: 12px;
-      text-align: center;
+      box-shadow: 0 0 40px rgba(255, 0, 85, 0.7);
       width: 90%;
-      max-width: 500px;
-    }
-    .login-box h2 {
-      margin-bottom: 20px;
-    }
-    input[type="password"] {
-      width: 80%;
-      padding: 10px;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: none;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #f40076;
-      border: none;
-      color: white;
-      font-size: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .content {
-      display: none;
-      padding: 20px;
-    }
-    .announcement {
-      background-color: #111;
-      padding: 15px;
-      border-left: 4px solid #2aa0ff;
-      margin-bottom: 20px;
-    }
-    .link-box {
-      margin: 10px 0;
-      background-color: #1e1e1e;
-      padding: 10px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-    }
-    .link-box img {
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
-    }
-    .link-box a {
-      color: #fff;
-      text-decoration: none;
+      max-width: 400px;
+      text-align: center;
     }
     .logo {
-      width: 80px;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
       margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(255, 0, 85, 0.7);
+    }
+    h1 {
+      margin-bottom: 10px;
+      font-size: 28px;
+      color: #ff0055;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+    }
+    button {
+      background-color: #ff0055;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #cc0044;
+    }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <header>ISCG-Esport</header>
-  <div class="container" id="login-container">
-    <div class="login-box">
-      <img src="IMG_20250413_172657_723.webp" class="logo" alt="戰隊標誌">
-      <h2>ISCG ᴱSport</h2>
-      <p>請輸入戰隊專屬密碼以檢視群組資訊：</p>
-      <input type="password" id="password" placeholder="請輸入密碼" />
-      <br />
-      <button onclick="checkPassword()">確認</button>
+  <div class="container" id="login">
+    <img src="IMG_20250413_172657_723.webp" alt="ISCG Logo" class="logo">
+    <h1>ISCG E-Sport</h1>
+    <p>請輸入戰隊專屬密碼以檢視群組資訊：</p>
+    <input type="password" id="password" placeholder="請輸入密碼">
+    <button onclick="checkPassword()">確認</button>
+  </div>
+
+  <div class="container hidden" id="content">
+    <h1>戰隊公告：</h1>
+    <div style="background:#111; border-left: 4px solid #ff0055; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+      請在此自行填入公告內容。
     </div>
-  </div>  <div class="content" id="content">
-    <div class="announcement">
-      <strong>戰隊公告：</strong>
-      <p>（請在此填寫公告內容）</p>
-    </div>
-    <div class="link-box">
-      <img src="https://img.icons8.com/?size=48&id=30998&format=png" alt="Discord">
-      <a href="https://discord.gg/fanQdSv4PK" target="_blank">Discord 戰隊群</a>
-    </div>
-    <div class="link-box">
-      <img src="https://img.icons8.com/?size=48&id=118497&format=png" alt="TikTok">
-      <a href="https://vt.tiktok.com/ZSHXGFkaU48Jg-cZ9XU/" target="_blank">TikTok 戰隊群</a>
-    </div>
-    <div class="link-box">
-      <img src="https://img.icons8.com/?size=48&id=32292&format=png" alt="Instagram">
-      <a href="https://ig.me/j/AbbADUNsweizIrmP/" target="_blank">Instagram 戰隊群</a>
-    </div>
-  </div>  <script>
+    <p><img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" style="width:20px; vertical-align:middle;"> <a href="https://discord.gg/fanQdSv4PK" style="color:#fff;">DC戰隊群連結</a></p>
+    <p><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" style="width:20px; vertical-align:middle;"> <a href="https://vt.tiktok.com/ZSHXGFkaU48Jg-cZ9XU/" style="color:#fff;">Tiktok戰隊群連結</a></p>
+    <p><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" style="width:20px; vertical-align:middle;"> <a href="https://ig.me/j/AbbADUNsweizIrmP/" style="color:#fff;">IG戰隊群連結</a></p>
+  </div>
+
+  <script>
     function checkPassword() {
-      const correctPassword = "0809";
-      const input = document.getElementById("password").value;
-      if (input === correctPassword) {
-        document.getElementById("login-container").style.display = "none";
-        document.getElementById("content").style.display = "block";
+      const pwd = document.getElementById('password').value;
+      if (pwd === '10809') {
+        document.getElementById('login').classList.add('hidden');
+        document.getElementById('content').classList.remove('hidden');
       } else {
-        alert("密碼錯誤，請再試一次。");
+        alert('密碼錯誤！');
       }
     }
-  </script></body>
+  </script>
+</body>
