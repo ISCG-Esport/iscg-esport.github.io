@@ -1,98 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
+  <title>ISCG-ESport</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ISCG E-Sport 登入</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 100vw;
       height: 100vh;
       overflow: hidden;
-    }
-    .container {
-      background: radial-gradient(circle at center, #1b1b1b, #0f0f0f);
-      border: 2px solid #ff0055;
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 0 40px rgba(255, 0, 85, 0.7);
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
-    .logo {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(255, 0, 85, 0.7);
-    }
-    h1 {
-      margin-bottom: 10px;
-      font-size: 28px;
-      color: #ff0055;
-    }
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin: 15px 0;
-      font-size: 16px;
-      border: none;
-      border-radius: 10px;
-    }
-    button {
-      background-color: #ff0055;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
       color: white;
-      padding: 12px 30px;
+    }
+    #login-container {
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, #1a1a1a, #000);
+      border: 5px solid #e60073;
+      box-shadow: 0 0 40px #e60073;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #login-box {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 90%;
+    }
+    #login-box img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    #login-box input {
+      padding: 10px;
+      border-radius: 5px;
       border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      width: 80%;
+      margin: 10px 0;
+      font-size: 1em;
+    }
+    #login-box button {
+      padding: 10px 20px;
+      background-color: #e60073;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
-    button:hover {
-      background-color: #cc0044;
-    }
-    .hidden {
+    #main-interface {
       display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+      background: linear-gradient(135deg, #111, #000);
+      overflow-y: auto;
+    }
+    .announcement, .sponsor-list {
+      background: rgba(255, 255, 255, 0.1);
+      border-left: 5px solid #e60073;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    h2 {
+      color: #e60073;
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li::before {
+      content: "★ ";
+      color: #ff007f;
     }
   </style>
 </head>
 <body>
-  <div class="container" id="login">
-    <img src="IMG_20250413_172657_723.webp" alt="ISCG Logo" class="logo">
-    <h1>ISCG E-Sport</h1>
-    <p>請輸入戰隊專屬密碼以檢視群組資訊：</p>
-    <input type="password" id="password" placeholder="請輸入密碼">
-    <button onclick="checkPassword()">確認</button>
-  </div>
-
-  <div class="container hidden" id="content">
-    <h1>戰隊公告：</h1>
-    <div style="background:#111; border-left: 4px solid #ff0055; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
-      請在此自行填入公告內容。
+  <!-- 登入畫面 -->
+  <div id="login-container">
+    <div id="login-box">
+      <img src="IMG_20250413_172657_723.webp" alt="ISCG Logo">
+      <h1>ISCG E<sup>Sport</sup></h1>
+      <p>請輸入戰隊專屬密碼以檢視群組資訊：</p>
+      <input type="password" id="password" placeholder="請輸入密碼">
+      <br>
+      <button onclick="verifyPassword()">確認</button>
     </div>
-    <p><img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" style="width:20px; vertical-align:middle;"> <a href="https://discord.gg/fanQdSv4PK" style="color:#fff;">DC戰隊群連結</a></p>
-    <p><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" style="width:20px; vertical-align:middle;"> <a href="https://vt.tiktok.com/ZSHXGFkaU48Jg-cZ9XU/" style="color:#fff;">Tiktok戰隊群連結</a></p>
-    <p><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" style="width:20px; vertical-align:middle;"> <a href="https://ig.me/j/AbbADUNsweizIrmP/" style="color:#fff;">IG戰隊群連結</a></p>
   </div>
-
+  <!-- 主畫面 -->
+  <div id="main-interface">
+    <div class="announcement">
+      <h2>戰隊公告：</h2>
+      <p>（公告內容...）</p>
+    </div>
+    <div class="sponsor-list">
+      <h2>贊助名單（50鑽凝膠護盾）</h2>
+      <ul>
+        <li>玩家A</li>
+        <li>玩家B</li>
+        <li>玩家C</li>
+        <!-- 可自行新增 -->
+      </ul>
+    </div>
+  </div>
   <script>
-    function checkPassword() {
-      const pwd = document.getElementById('password').value;
-      if (pwd === '0809') {
-        document.getElementById('login').classList.add('hidden');
-        document.getElementById('content').classList.remove('hidden');
+    function verifyPassword() {
+      const input = document.getElementById("password").value;
+      const correctPassword = "0809"; // 可自訂密碼
+      if (input === correctPassword) {
+        document.getElementById("login-container").style.display = "none";
+        document.getElementById("main-interface").style.display = "block";
       } else {
-        alert('密碼錯誤！');
+        alert("密碼錯誤，請再試一次！");
       }
     }
   </script>
+
 </body>
+</html>
