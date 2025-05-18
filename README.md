@@ -87,7 +87,7 @@
   <script>
     function checkPassword() {
       const pwd = document.getElementById('password').value;
-      if (pwd === '10809') {
+      if (pwd === '0809') {
         document.getElementById('login').classList.add('hidden');
         document.getElementById('content').classList.remove('hidden');
       } else {
