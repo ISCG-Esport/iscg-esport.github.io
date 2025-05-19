@@ -17,7 +17,6 @@
     #login-container {
       width: 100vw;
       height: 100vh;
-      box-sizing: border-box;
       border: 6px solid #ff007f;
       padding: 20px;
       display: flex;
@@ -164,33 +163,55 @@
 </div>
 
 <script>
+  // 頁面載入時載入 localStorage
+  window.onload = function () {
+    const savedAnnouncement = localStorage.getItem("announcement");
+    const savedSponsorList = localStorage.getItem("sponsorList");
+
+    if (savedAnnouncement) {
+      document.getElementById("announcement-text").innerHTML = savedAnnouncement;
+    }
+
+    if (savedSponsorList) {
+      document.getElementById("sponsor-list").innerHTML = savedSponsorList;
+    }
+  };
+
   function verifyPassword() {
     const input = document.getElementById("password").value;
     const userPassword = "0809";
-    const adminPassword = "6969.iscg";
+    const adminPassword = "admin0809";
 
     if (input === userPassword) {
-      document.getElementById("login-container").style.display = "none";
-      document.getElementById("main-interface").style.display = "block";
+      showInterface(false);
     } else if (input === adminPassword) {
-      document.getElementById("login-container").style.display = "none";
-      document.getElementById("main-interface").style.display = "block";
-      enableEditing();
+      showInterface(true);
     } else {
       alert("密碼錯誤，請再試一次！");
     }
   }
 
-  function enableEditing() {
-    const editables = document.querySelectorAll(".editable");
-    editables.forEach(el => {
-      el.contentEditable = true;
-    });
-    document.getElementById("save-button").style.display = "inline-block";
+  function showInterface(isAdmin) {
+    document.getElementById("login-container").style.display = "none";
+    document.getElementById("main-interface").style.display = "block";
+
+    if (isAdmin) {
+      const editables = document.querySelectorAll(".editable");
+      editables.forEach(el => {
+        el.contentEditable = true;
+      });
+      document.getElementById("save-button").style.display = "inline-block";
+    }
   }
 
   function saveChanges() {
-    alert("內容已儲存！（示意操作，實際儲存需搭配後端或 localStorage）");
+    const announcement = document.getElementById("announcement-text").innerHTML;
+    const sponsorList = document.getElementById("sponsor-list").innerHTML;
+
+    localStorage.setItem("announcement", announcement);
+    localStorage.setItem("sponsorList", sponsorList);
+
+    alert("內容已儲存至瀏覽器本地（localStorage）！");
   }
 </script>
 
