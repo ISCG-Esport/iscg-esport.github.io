@@ -116,35 +116,42 @@
     </div>
   </div>
 
-  <!-- 主畫面內容 -->
-  <div id="main-interface">
-    <div class="announcement">
-      <h2>戰隊公告</h2>
-      <p>公告...</p>
-    </div>
-    <div class="group-links">
-      <h2>戰隊群組連結</h2>
-      <ul>
-<div class="link-box">
-      <img src="https://img.icons8.com/?size=48&id=30998&format=png" alt="Discord">
-      <a href="https://discord.gg/fanQdSv4PK" target="_blank">Discord 戰隊群</a>
-    </div>
-    <div class="link-box">
-      <img src="https://images.app.goo.gl/eNzNS" alt="TikTok">
-      <a href="https://vt.tiktok.com/ZSHXGFkaU48Jg-cZ9XU/" target="_blank">TikTok 戰隊群</a>
-    </div>
-    <div class="link-box">
-      <img src="https://img.icons8.com/?size=48&id=32292&format=png" alt="Instagram">
-      <a href="https://ig.me/j/AbbADUNsweizIrmP/" target="_blank">Instagram 戰隊群</a>
-    </div>
+<!-- 主畫面內容 -->
+<div id="main-interface">
+  <div class="announcement">
+    <h2>戰隊公告</h2>
+    <p>公告...</p>
+  </div>
+
+  <!-- 群組連結獨立區塊 -->
+  <div class="group-links">
+    <h2>戰隊群組連結</h2>
+    <ul>
+      <li>
+        <img src="https://img.icons8.com/?size=48&id=30998&format=png" alt="Discord">
+        <a href="https://discord.gg/fanQdSv4PK" target="_blank">Discord 戰隊群</a>
+      </li>
+      <li>
+        <img src="https://images.app.goo.gl/eNzNS" alt="TikTok">
+        <a href="https://vt.tiktok.com/ZSHXGFkaU48Jg-cZ9XU/" target="_blank">TikTok 戰隊群</a>
+      </li>
+      <li>
+        <img src="https://img.icons8.com/?size=48&id=32292&format=png" alt="Instagram">
+        <a href="https://ig.me/j/AbbADUNsweizIrmP/" target="_blank">Instagram 戰隊群</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 贊助名單獨立區塊 -->
   <div class="sponsor-list">
-      <h2>贊助名單（50鑽凝膠）</h2>
-      <ul>
-        <li>玩家A</li>
-        <li>玩家B</li>
-        <li>玩家C</li>
-      </ul>
-    </div>
+    <h2>贊助名單（50鑽凝膠）</h2>
+    <ul>
+      <li>烤雞 ： 50</li>
+      <li>YT：FF電玩 ： 50</li>
+      <li>玩家？</li>
+    </ul>
+  </div>
+</div>
 
   <script>
     function verifyPassword() {
