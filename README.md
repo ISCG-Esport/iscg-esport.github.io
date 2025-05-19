@@ -180,7 +180,7 @@
   function verifyPassword() {
     const input = document.getElementById("password").value;
     const userPassword = "0809";
-    const adminPassword = "admin0809";
+    const adminPassword = "69.iscg.69";
 
     if (input === userPassword) {
       showInterface(false);
