@@ -149,6 +149,10 @@
         <img src="https://img.icons8.com/?size=48&id=32292&format=png" alt="Instagram">
         <a href="https://ig.me/j/AbbADUNsweizIrmP/" target="_blank">Instagram 戰隊群</a>
       </li>
+      <li>
+        <img src="" alt="Line">
+        <a href="https://line.me/ti/g2/uuB5tqIRcczDqiSbY57qsRRdZw52yvSCnhbJxQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">Line 戰隊群</a>
+      </li>
     </ul>
   </div>
 
