@@ -99,31 +99,42 @@
       color: #00ffff;
       text-decoration: underline;
     }
-
+    .editable {
+      border: 1px dashed transparent;
+      padding: 5px;
+    }
+    .editable[contenteditable="true"] {
+      border: 1px dashed #ff007f;
+    }
+    #save-button {
+      display: none;
+      background-color: #00cc99;
+    }
   </style>
 </head>
 <body>
 
-  <!-- 登入畫面 -->
-  <div id="login-container">
-    <div id="login-box">
-      <img src="IMG_20250413_172657_723.webp" alt="Logo">
-      <h1>ISCG E<sup>Sport</sup></h1>
-      <p>請輸入戰隊專屬密碼以檢視群組資訊：</p>
-      <input type="password" id="password" placeholder="請輸入 密碼">
-      <br>
-      <button onclick="verifyPassword()">確認</button>
-    </div>
+<!-- 登入畫面 -->
+<div id="login-container">
+  <div id="login-box">
+    <img src="IMG_20250413_172657_723.webp" alt="Logo">
+    <h1>ISCG E<sup>Sport</sup></h1>
+    <p>請輸入戰隊專屬密碼以檢視群組資訊：</p>
+    <input type="password" id="password" placeholder="請輸入 密碼">
+    <br>
+    <button onclick="verifyPassword()">確認</button>
   </div>
+</div>
 
 <!-- 主畫面內容 -->
 <div id="main-interface">
+  <button id="save-button" onclick="saveChanges()">儲存變更</button>
+
   <div class="announcement">
     <h2>戰隊公告</h2>
-    <p>公告...</p>
+    <p id="announcement-text" class="editable">公告...</p>
   </div>
 
-  <!-- 群組連結獨立區塊 -->
   <div class="group-links">
     <h2>戰隊群組連結</h2>
     <ul>
@@ -142,10 +153,9 @@
     </ul>
   </div>
 
-  <!-- 贊助名單獨立區塊 -->
   <div class="sponsor-list">
     <h2>贊助名單（50鑽凝膠）</h2>
-    <ul>
+    <ul id="sponsor-list" class="editable">
       <li>烤雞 ： 50</li>
       <li>YT：FF電玩 ： 50</li>
       <li>玩家？</li>
@@ -153,16 +163,36 @@
   </div>
 </div>
 
-  <script>
-    function verifyPassword() {
-      const input = document.getElementById("password").value;
-      const correctPassword = "0809"; // 你可以自行修改
+<script>
+  function verifyPassword() {
+    const input = document.getElementById("password").value;
+    const userPassword = "0809";
+    const adminPassword = "6969.iscg";
 
-      if (input === correctPassword) {
-        document.getElementById("login-container").style.display = "none";
-        document.getElementById("main-interface").style.display = "block";
-      } else {
-        alert("密碼錯誤，請再試一次！");
-      }
+    if (input === userPassword) {
+      document.getElementById("login-container").style.display = "none";
+      document.getElementById("main-interface").style.display = "block";
+    } else if (input === adminPassword) {
+      document.getElementById("login-container").style.display = "none";
+      document.getElementById("main-interface").style.display = "block";
+      enableEditing();
+    } else {
+      alert("密碼錯誤，請再試一次！");
     }
-  </script>
+  }
+
+  function enableEditing() {
+    const editables = document.querySelectorAll(".editable");
+    editables.forEach(el => {
+      el.contentEditable = true;
+    });
+    document.getElementById("save-button").style.display = "inline-block";
+  }
+
+  function saveChanges() {
+    alert("內容已儲存！（示意操作，實際儲存需搭配後端或 localStorage）");
+  }
+</script>
+
+</body>
+</html>
