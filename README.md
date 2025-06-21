@@ -162,8 +162,11 @@
     <h3 id="modeTitle">請選擇排行榜模式</h3>
     <div id="leaderboard">尚未載入資料。</div>
   </div>
-</div><script>
-  window.onload = function () {
+</div>
+<script>
+  let currentRegion = "ind";
+
+  function initPage() {
     const savedAnnouncement = localStorage.getItem("announcement");
     const savedSponsorList = localStorage.getItem("sponsorList");
     if (savedAnnouncement) {
@@ -176,6 +179,7 @@
       .then(res => res.json())
       .then(regions => {
         const regionSelect = document.getElementById("regionSelect");
+        regionSelect.innerHTML = "";
         regions.forEach(region => {
           const option = document.createElement("option");
           option.value = region;
@@ -183,8 +187,17 @@
           regionSelect.appendChild(option);
         });
         currentRegion = regions[0];
+        // 加上地區選單變更事件（確保是在載入後）
+        regionSelect.addEventListener("change", () => {
+          currentRegion = regionSelect.value;
+        });
+      })
+      .catch(err => {
+        console.error("載入地區失敗", err);
+        alert("無法載入地區資料，請稍後再試。");
       });
-  };
+  }
+
   function verifyPassword() {
     const input = document.getElementById("password").value;
     const userPassword = "0809";
@@ -208,6 +221,8 @@
       });
       document.getElementById("save-button").style.display = "inline-block";
     }
+    // 延後執行主功能（包含排行榜區塊初始化）
+    initPage();
   }
 
   function saveChanges() {
@@ -218,12 +233,7 @@
     alert("內容已儲存至瀏覽器本地（localStorage）！");
   }
 
-  let currentRegion = "ind";
-
-  document.getElementById("regionSelect").addEventListener("change", function() {
-    currentRegion = this.value;
-  });
-    function loadLeaderboard(mode) {
+  function loadLeaderboard(mode) {
     let url = `https://ariflexlabs-leaderboard-api.vercel.app/${mode}/leaderboard?key=arii`;
     if (mode !== "bp") {
       url += `&region=${currentRegion}`;
@@ -231,11 +241,11 @@
     } else {
       document.getElementById("modeTitle").innerText = `📊 模式：Booyah Pass（全球）`;
     }
-  document.getElementById("leaderboard").innerHTML = "載入中...";
+    const container = document.getElementById("leaderboard");
+    container.innerHTML = "載入中...";
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        const container = document.getElementById("leaderboard");
         container.innerHTML = "";
         data.slice(0, 10).forEach((player, index) => {
           const div = document.createElement("div");
@@ -245,9 +255,10 @@
         });
       })
       .catch(err => {
-        document.getElementById("leaderboard").innerHTML = "❌ 載入資料失敗。請稍後再試。";
-        console.error(err);
+        container.innerHTML = "❌ 載入資料失敗。";
+        console.error("排行榜 API 錯誤", err);
       });
   }
-</script></body>
+</script>
+</body>
 </html>
