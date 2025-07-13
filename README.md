@@ -5,14 +5,14 @@
   <title>ISCG-Esport</title>
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #000;
-      font-family: 'Orbitron', sans-serif;
-      color: #fff;
-      overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  background: #000;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+    }
     }
     #login-container {
       width: 100vw;
