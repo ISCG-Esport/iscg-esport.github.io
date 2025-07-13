@@ -75,7 +75,7 @@
       box-sizing: border-box;
       overflow-y: auto;
     }
-    .announcement, .sponsor-list, .group-links, .leaderboard-section {
+    .announcement, .sponsor-list, .group-links, .rules-section {
       margin-bottom: 20px;
       padding: 20px;
       background: rgba(255,255,255,0.08);
@@ -109,20 +109,9 @@
       display: none;
       background-color: #00cc99;
     }
-    select {
-      margin: 10px;
-      padding: 5px;
-    }
-    .player {
-      background: #222;
-      margin: 8px 0;
-      padding: 10px;
-      border-left: 4px solid #ffd700;
-    }
   </style>
 </head>
-<body>
-<div id="login-container">
+<body><div id="login-container">
   <div id="login-box">
     <img src="IMG_20250413_172657_723.webp" alt="Logo">
     <h1>ISCG E<sup>Sport</sup></h1>
@@ -135,6 +124,9 @@
   <button id="save-button" onclick="saveChanges()">儲存變更</button>  <div class="announcement">
     <h2>戰隊公告</h2>
     <p id="announcement-text" class="editable">公告...</p>
+  </div>  <div class="rules-section">
+    <h2>戰隊規則</h2>
+    <p id="rules-text" class="editable">1. 尊重每一位成員<br>2. 禁止作弊與外掛<br>3. 積極參與戰隊活動</p>
   </div>  <div class="group-links">
     <h2>戰隊群組連結</h2>
     <ul>
@@ -150,54 +142,8 @@
       <li>YT：FF電玩 ： 50</li>
       <li>玩家？</li>
     </ul>
-  </div>  <div class="leaderboard-section">
-    <h2>排行榜</h2>
-    <label for="regionSelect">🌍 選擇區域：</label>
-    <select id="regionSelect"></select>
-    <div>
-      <button onclick="loadLeaderboard('br')">Battle Royale</button>
-      <button onclick="loadLeaderboard('cs')">Clash Squad</button>
-      <button onclick="loadLeaderboard('bp')">Booyah Pass</button>
-    </div>
-    <h3 id="modeTitle">請選擇排行榜模式</h3>
-    <div id="leaderboard">尚未載入資料。</div>
   </div>
-</div>
-<script>
-  let currentRegion = "ind";
-
-  function initPage() {
-    const savedAnnouncement = localStorage.getItem("announcement");
-    const savedSponsorList = localStorage.getItem("sponsorList");
-    if (savedAnnouncement) {
-      document.getElementById("announcement-text").innerHTML = savedAnnouncement;
-    }
-    if (savedSponsorList) {
-      document.getElementById("sponsor-list").innerHTML = savedSponsorList;
-    }
-    fetch("https://ariflexlabs-leaderboard-api.vercel.app/regions")
-      .then(res => res.json())
-      .then(regions => {
-        const regionSelect = document.getElementById("regionSelect");
-        regionSelect.innerHTML = "";
-        regions.forEach(region => {
-          const option = document.createElement("option");
-          option.value = region;
-          option.innerText = region.toUpperCase();
-          regionSelect.appendChild(option);
-        });
-        currentRegion = regions[0];
-        // 加上地區選單變更事件（確保是在載入後）
-        regionSelect.addEventListener("change", () => {
-          currentRegion = regionSelect.value;
-        });
-      })
-      .catch(err => {
-        console.error("載入地區失敗", err);
-        alert("無法載入地區資料，請稍後再試。");
-      });
-  }
-
+</div><script>
   function verifyPassword() {
     const input = document.getElementById("password").value;
     const userPassword = "0809";
@@ -210,7 +156,6 @@
       alert("密碼錯誤，請再試一次！");
     }
   }
-
   function showInterface(isAdmin) {
     document.getElementById("login-container").style.display = "none";
     document.getElementById("main-interface").style.display = "block";
@@ -221,44 +166,31 @@
       });
       document.getElementById("save-button").style.display = "inline-block";
     }
-    // 延後執行主功能（包含排行榜區塊初始化）
-    initPage();
+    loadSavedContent();
   }
 
+  function loadSavedContent() {
+    const savedAnnouncement = localStorage.getItem("announcement");
+    const savedSponsorList = localStorage.getItem("sponsorList");
+    const savedRules = localStorage.getItem("rulesText");
+    if (savedAnnouncement) {
+      document.getElementById("announcement-text").innerHTML = savedAnnouncement;
+    }
+    if (savedSponsorList) {
+      document.getElementById("sponsor-list").innerHTML = savedSponsorList;
+    }
+    if (savedRules) {
+      document.getElementById("rules-text").innerHTML = savedRules;
+    }
+  }
   function saveChanges() {
     const announcement = document.getElementById("announcement-text").innerHTML;
     const sponsorList = document.getElementById("sponsor-list").innerHTML;
+    const rulesText = document.getElementById("rules-text").innerHTML;
     localStorage.setItem("announcement", announcement);
     localStorage.setItem("sponsorList", sponsorList);
+    localStorage.setItem("rulesText", rulesText);
     alert("內容已儲存至瀏覽器本地（localStorage）！");
   }
-
-  function loadLeaderboard(mode) {
-    let url = `https://ariflexlabs-leaderboard-api.vercel.app/${mode}/leaderboard?key=arii`;
-    if (mode !== "bp") {
-      url += `&region=${currentRegion}`;
-      document.getElementById("modeTitle").innerText = `📊 模式：${mode.toUpperCase()} - 地區：${currentRegion.toUpperCase()}`;
-    } else {
-      document.getElementById("modeTitle").innerText = `📊 模式：Booyah Pass（全球）`;
-    }
-    const container = document.getElementById("leaderboard");
-    container.innerHTML = "載入中...";
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        container.innerHTML = "";
-        data.slice(0, 10).forEach((player, index) => {
-          const div = document.createElement("div");
-          div.className = "player";
-          div.innerText = `#${index + 1} | ${player.name || "未知玩家"} | 等級: ${player.level || "?"} | 積分: ${player.points || "?"}`;
-          container.appendChild(div);
-        });
-      })
-      .catch(err => {
-        container.innerHTML = "❌ 載入資料失敗。";
-        console.error("排行榜 API 錯誤", err);
-      });
-  }
-</script>
-</body>
+</script></body>
 </html>
